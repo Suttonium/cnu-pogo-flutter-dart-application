@@ -76,6 +76,7 @@ class PokeDetail extends StatelessWidget {
                                   label: Text(n.name,
                                       style: TextStyle(color: Colors.white)),
                                   onSelected: (b) {
+                                    Navigator.pop(context);
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(

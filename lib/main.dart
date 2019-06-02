@@ -16,7 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var url =
+  var url = // my scrapper works LETS GO
       "https://raw.githubusercontent.com/Suttonium/pokemon-web-scraping-info/master/pokemon.json";
 
   PokeHub pokeHub;
@@ -64,34 +64,30 @@ class _HomePageState extends State<HomePage> {
                                       builder: (context) => PokeDetail(
                                           pokemon: poke, pokeHub: pokeHub)));
                             },
-                            child: Hero(
-                              tag: poke.img,
-                              child: Card(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: <Widget>[
-                                    Container(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.1,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.2,
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              fit: BoxFit.contain,
-                                              image: NetworkImage(poke.img))),
+                            child: Card(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Container(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.1,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.2,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            fit: BoxFit.contain,
+                                            image: NetworkImage(poke.img))),
+                                  ),
+                                  Text(
+                                    poke.name,
+                                    style: TextStyle(
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                    Text(
-                                      poke.name,
-                                      style: TextStyle(
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    )
-                                  ],
-                                ),
+                                  )
+                                ],
                               ),
                             ),
                           ),

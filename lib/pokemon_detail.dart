@@ -7,8 +7,8 @@ class PokeDetail extends StatelessWidget {
 
   PokeDetail({this.pokemon, this.pokeHub});
 
-  Pokemon queryPokemonEvolution(String name) {
-    return pokeHub.pokemon.firstWhere((poke) => poke.name == name);
+  static Pokemon queryPokemon(String name, PokeHub hub) {
+    return hub.pokemon.firstWhere((poke) => poke.name == name);
   }
 
   bodyWidget(BuildContext context) => Stack(
@@ -81,9 +81,8 @@ class PokeDetail extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => PokeDetail(
-                                                  pokemon:
-                                                      queryPokemonEvolution(
-                                                          n.name),
+                                                  pokemon: queryPokemon(
+                                                      n.name, pokeHub),
                                                   pokeHub: pokeHub,
                                                 )));
                                   }))
@@ -111,10 +110,10 @@ class PokeDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.cyan,
+      backgroundColor: Colors.red,
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: Colors.cyan,
+        backgroundColor: Colors.red,
         title: Text(pokemon.name),
       ),
       body: bodyWidget(context),

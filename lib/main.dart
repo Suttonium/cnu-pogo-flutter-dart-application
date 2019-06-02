@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:cnupogo/pokehub.dart';
 import 'dart:convert';
 
+import 'data_search.dart';
+
 void main() => runApp(MaterialApp(
       title: 'Poke App',
       home: HomePage(),
@@ -40,8 +42,17 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Center(child: Text('Poke App')),
-        backgroundColor: Colors.cyan,
+        backgroundColor: Colors.red,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              showSearch(context: context, delegate: DataSearch(pokeHub));
+            },
+          )
+        ],
       ),
+      drawer: Drawer(),
       body: Container(
         constraints: BoxConstraints(
           maxWidth: MediaQuery.of(context).size.width,

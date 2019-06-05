@@ -1,16 +1,23 @@
-import 'package:cnupogo/pokemon_detail.dart';
+import 'package:cnupogo/pages/login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:cnupogo/pokehub.dart';
 import 'dart:convert';
 
+import 'package:cnupogo/pokemon_detail.dart';
+import 'package:cnupogo/pokehub.dart';
 import 'data_search.dart';
 
 void main() => runApp(MaterialApp(
       title: 'Poke App',
-      home: HomePage(),
+      routes: routes,
       debugShowCheckedModeBanner: false,
     ));
+
+final routes = {
+  '/login': (BuildContext context) => LoginPage(),
+  '/home': (BuildContext context) => HomePage(),
+  '/': (BuildContext context) => LoginPage(),
+};
 
 class HomePage extends StatefulWidget {
   @override

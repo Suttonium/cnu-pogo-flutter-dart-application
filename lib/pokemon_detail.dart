@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:cnupogo/pokehub.dart';
 
 class PokeDetail extends StatelessWidget {

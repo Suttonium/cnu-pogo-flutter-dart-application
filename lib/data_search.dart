@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:cnupogo/pokehub.dart';
 import 'package:cnupogo/pokemon_detail.dart';
-import 'package:flutter/material.dart';
 
 class DataSearch extends SearchDelegate<String> {
   PokeHub pokeHub;

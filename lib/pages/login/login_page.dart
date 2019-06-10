@@ -15,6 +15,8 @@ class _LoginPageState extends State<LoginPage> implements LoginPageContract {
   final scaffoldKey = new GlobalKey<ScaffoldState>();
   String _username, _password;
   LoginPagePresenter _presenter;
+  final dbHelper = new DatabaseHelper();
+  bool _obscureText = true;
 
   _LoginPageState() {
     _presenter = new LoginPagePresenter(this);
@@ -42,6 +44,13 @@ class _LoginPageState extends State<LoginPage> implements LoginPageContract {
     var loginButton = RaisedButton(
         onPressed: _submit, child: Text("Login"), color: Colors.red);
 
+    // Toggles the password show status
+    void _toggle() {
+      setState(() {
+        _obscureText = !_obscureText;
+      });
+    }
+
     var loginForm = Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
@@ -56,23 +65,46 @@ class _LoginPageState extends State<LoginPage> implements LoginPageContract {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: TextFormField(
+                  decoration: const InputDecoration(
+                      labelText: 'Username',
+                      icon: const Padding(
+                        padding: const EdgeInsets.only(top: 15.0),
+                        child: const Icon(Icons.account_box),
+                      )),
+                  validator: null,
                   onSaved: (val) => _username = val,
-                  decoration: InputDecoration(labelText: "Username"),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: TextFormField(
+                  decoration: const InputDecoration(
+                      labelText: 'Password',
+                      icon: const Padding(
+                        padding: const EdgeInsets.only(top: 15.0),
+                        child: const Icon(Icons.lock),
+                      )),
+                  validator: (val) =>
+                      val.length < 6 ? 'Password too short.' : null,
                   onSaved: (val) => _password = val,
-                  decoration: InputDecoration(labelText: "Password"),
+                  obscureText: _obscureText,
                 ),
               ),
+              new FlatButton(
+                  onPressed: _toggle,
+                  child: new Text(_obscureText ? "Show" : "Hide")),
+              new FlatButton(
+                  onPressed: () {
+                    _navigate('/signup');
+                  },
+                  child: new Text('Sign Up!')),
             ],
           ),
         ),
         loginButton
       ],
     );
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Login Page"),
@@ -84,6 +116,10 @@ class _LoginPageState extends State<LoginPage> implements LoginPageContract {
         ),
       ),
     );
+  }
+
+  void _navigate(String route) {
+    Navigator.of(context).pushNamed(route);
   }
 
   @override
@@ -101,7 +137,6 @@ class _LoginPageState extends State<LoginPage> implements LoginPageContract {
       _isLoading = false;
     });
     var db = new DatabaseHelper();
-    print("saving");
     await db.saveUser(user);
     Navigator.of(context).pushNamed('/home');
   }

@@ -31,7 +31,6 @@ class DatabaseHelper {
   }
 
   void _onCreate(Database db, int version) async {
-    print("creating");
     await db.transaction((txn) async {
       await txn.execute(
           "CREATE TABLE User(id INTEGER PRIMARY KEY, username TEXT, password TEXT)");

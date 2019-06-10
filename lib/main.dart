@@ -1,4 +1,5 @@
 import 'package:cnupogo/pages/login/login_page.dart';
+import 'package:cnupogo/pages/signup/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -17,6 +18,7 @@ final routes = {
   '/login': (BuildContext context) => LoginPage(),
   '/home': (BuildContext context) => HomePage(),
   '/': (BuildContext context) => LoginPage(),
+  '/signup': (BuildContext context) => SignUpPage(),
 };
 
 class HomePage extends StatefulWidget {

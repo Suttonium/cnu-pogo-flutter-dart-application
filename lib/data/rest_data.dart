@@ -6,7 +6,11 @@ class RestData {
   static final BASE_URL = "";
   static final LOGIN_URL = BASE_URL + "/";
 
-  Future<User> login(String username, String password) {
+  Future<User> signup(String username, String password) {
     return Future.value(new User(username, password));
+  }
+
+  Future<User> login(String username, String password) {
+    return null;
   }
 }
